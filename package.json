@@ -1,0 +1,22 @@
+{
+  "name": "sunset-oia-fleet-showcase",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.1.5",
+    "sharp": "^0.35.4",
+    "vite": "^6.1.0"
+  },
+  "allowScripts": {
+    "esbuild@0.25.12": true
+  }
+}

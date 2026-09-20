@@ -1,0 +1,1256 @@
+﻿@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap");
+
+:root {
+  font-family: "Instrument Sans", Arial, sans-serif;
+  color: #082c58;
+  background: #ffffff;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  --ink: #082c58;
+  --blue: #1767d5;
+  --line: #c7d7e6;
+  --canvas: #ffffff;
+  --white: #ffffff;
+  --header-height: 80px;
+  --showcase-radius: 28px;
+  --showcase-gutter: 18px;
+  --showcase-button: #111111;
+  --showcase-accent: #d9ad6b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--canvas);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  min-height: var(--header-height);
+  background: rgba(248, 250, 252, .97);
+  border-top: 2px solid #6bbbd4;
+  border-bottom: 1px solid #c9d8e5;
+  backdrop-filter: blur(10px);
+}
+
+.header-inner {
+  width: min(1770px, calc(100% - 32px));
+  min-height: var(--header-height);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 30px;
+}
+
+.brand {
+  justify-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brand-mark {
+  width: 43px;
+  height: 43px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #2568cf;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.brand-copy {
+  display: grid;
+  gap: 1px;
+}
+
+.brand-copy strong {
+  font-size: 14px;
+  line-height: 1.1;
+}
+
+.brand-copy small {
+  color: #2a5f9a;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.main-nav {
+  justify-self: center;
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.main-nav a {
+  transition: color 160ms ease;
+}
+
+.main-nav a:hover {
+  color: var(--blue);
+}
+
+.material-badge {
+  justify-self: end;
+  min-height: 38px;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--line);
+  background: #eef5fb;
+  color: #24558a;
+  font-size: 9px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.material-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #1767d5;
+}
+
+/* Fleet page */
+.page-shell {
+  width: min(1495px, calc(100% - 40px));
+  margin: 24px auto 54px;
+}
+
+.fleet-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-auto-rows: 430px;
+  grid-auto-flow: dense;
+  column-gap: var(--showcase-gutter);
+  row-gap: 52px;
+}
+
+/* Intro card: deliberately simple for now, but correctly participates in the bento */
+.intro-card {
+  grid-column: span 4;
+  min-width: 0;
+  height: 100%;
+  padding: 34px;
+  display: flex;
+  border: 1px solid #c8d9e8;
+  border-radius: var(--showcase-radius);
+  background: linear-gradient(180deg, #edf6fc 0%, #e8f2f9 100%);
+  overflow: hidden;
+}
+
+.intro-card-inner {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.intro-eyebrow {
+  margin-bottom: 16px;
+  color: #42698f;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.intro-card h1 {
+  margin: 0;
+  color: #082c58;
+  font-size: clamp(48px, 4vw, 70px);
+  font-weight: 700;
+  line-height: .88;
+  letter-spacing: -.065em;
+}
+
+.intro-card p {
+  max-width: 350px;
+  margin: 28px 0 0;
+  color: #284661;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.intro-card-footer {
+  margin-top: auto;
+  padding-top: 24px;
+}
+
+.intro-card-footer span {
+  display: inline-flex;
+  min-height: 38px;
+  padding: 0 14px;
+  align-items: center;
+  border: 1px solid rgba(8, 44, 88, .13);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .55);
+  color: #082c58;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+
+/* Full-photo vessel cards */
+.showcase-vessel-card {
+  position: relative;
+  min-width: 0;
+  height: 100%;
+  padding-bottom: 0;
+  overflow: visible;
+}
+
+.showcase-vessel-card--standard {
+  grid-column: span 4;
+  grid-row: span 1;
+}
+
+.showcase-vessel-card--wide {
+  grid-column: span 8;
+  grid-row: span 1;
+}
+
+.showcase-vessel-card--tall {
+  grid-column: span 4;
+  grid-row: span 2;
+}
+
+.showcase-card-surface {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: hidden;
+  border-radius: var(--showcase-radius);
+  background: #092a48;
+  box-shadow: 0 10px 30px rgba(7, 25, 42, .06);
+
+  -webkit-mask-image: radial-gradient(circle 39px at calc(100% - 30px) calc(100% - 7px),
+      transparent 0 38px,
+      #000 39px);
+
+  mask-image: radial-gradient(circle 39px at calc(100% - 30px) calc(100% - 7px),
+      transparent 0 38px,
+      #000 39px);
+
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.showcase-card-media {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transform: scale(1.001);
+  transition: transform 700ms cubic-bezier(.2, .7, .2, 1), filter 500ms ease;
+}
+
+.showcase-card-surface:hover .showcase-card-media {
+  transform: scale(1.025);
+}
+
+.showcase-card-surface::before,
+.showcase-card-surface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.showcase-card-surface::before {
+  z-index: -2;
+  background: linear-gradient(0deg,
+      rgba(3, 14, 25, .78) 0%,
+      rgba(3, 14, 25, .44) 27%,
+      rgba(3, 14, 25, .08) 55%,
+      transparent 72%);
+}
+
+.showcase-card-surface::after {
+  z-index: -1;
+  background: linear-gradient(90deg,
+      rgba(3, 14, 25, .34) 0%,
+      rgba(3, 14, 25, .08) 46%,
+      transparent 70%);
+}
+
+.showcase-vessel-card--shade-medium .showcase-card-surface::before,
+.showcase-vessel-card--shade-medium .showcase-card-surface::after {
+  opacity: .72;
+}
+
+.showcase-vessel-card--top-left .showcase-card-surface::before,
+.showcase-vessel-card--top-right .showcase-card-surface::before {
+  background: linear-gradient(180deg,
+      rgba(3, 14, 25, .72) 0%,
+      rgba(3, 14, 25, .32) 30%,
+      transparent 67%);
+}
+
+.showcase-vessel-card--top-right .showcase-card-surface::after {
+  background: linear-gradient(270deg,
+      rgba(3, 14, 25, .34) 0%,
+      rgba(3, 14, 25, .08) 44%,
+      transparent 70%);
+}
+
+.showcase-card-copy {
+  position: absolute;
+  z-index: 2;
+  max-width: min(86%, 720px);
+  color: #fff;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .16);
+}
+
+.showcase-vessel-card--bottom-left .showcase-card-copy {
+  left: 28px;
+  bottom: 34px;
+}
+
+.showcase-vessel-card--top-left .showcase-card-copy {
+  left: 28px;
+  top: 28px;
+}
+
+.showcase-vessel-card--top-right .showcase-card-copy {
+  top: 28px;
+  right: 28px;
+  text-align: right;
+}
+
+.showcase-card-name {
+  display: block;
+  margin-bottom: 7px;
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -.025em;
+}
+
+.showcase-card-model {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(39px, 3.1vw, 61px);
+  font-weight: 700;
+  line-height: .9;
+  letter-spacing: -.07em;
+}
+
+.showcase-vessel-card--wide .showcase-card-model {
+  font-size: clamp(52px, 4.2vw, 76px);
+}
+
+.showcase-vessel-card--tall .showcase-card-model {
+  font-size: clamp(42px, 3.4vw, 60px);
+}
+
+.showcase-card-meta {
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.showcase-card-meta>span:not(.showcase-card-divider) {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.showcase-card-meta svg {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.45;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.showcase-card-divider {
+  width: 1px;
+  height: 24px;
+  background: rgba(255, 255, 255, .42);
+}
+
+/* Visit Site CTA: no fake white element; the surface itself is cut out */
+.showcase-card-notch {
+  display: none;
+}
+
+.showcase-card-visit {
+  position: absolute;
+  z-index: 5;
+
+  right: -4px;
+  bottom: -40px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+
+  color: #142536;
+}
+
+.showcase-card-visit-circle {
+  width: 70px;
+  height: 70px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--showcase-button);
+  color: var(--showcase-accent);
+  font-family: Arial, sans-serif;
+  font-size: 31px;
+  font-weight: 300;
+  line-height: 1;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .12);
+  transition: transform 220ms ease, background 220ms ease;
+}
+
+.showcase-card-visit-label {
+  font-size: 8px;
+  font-weight: 650;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.showcase-card-visit:hover .showcase-card-visit-circle {
+  transform: translate(2px, -2px) scale(1.035);
+  background: #000;
+}
+
+/* Vessel profile page */
+.vessel-page {
+  width: min(1495px, calc(100% - 40px));
+  margin: 34px auto 70px;
+}
+
+.vessel-page--missing {
+  min-height: 50vh;
+  display: grid;
+  place-content: center;
+  gap: 12px;
+  text-align: center;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #1767d5;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.vessel-hero {
+  min-height: 620px;
+  display: grid;
+  grid-template-columns: .86fr 1.4fr;
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.vessel-hero-copy {
+  padding: clamp(34px, 5vw, 76px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-model {
+  display: block;
+  color: #1264d5;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.vessel-hero-copy h1 {
+  margin: 12px 0 24px;
+  font-size: clamp(58px, 6vw, 104px);
+  font-weight: 700;
+  line-height: .9;
+  letter-spacing: -.055em;
+}
+
+.vessel-hero-copy p {
+  max-width: 550px;
+  color: #3b4f63;
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.vessel-hero-image {
+  width: 100%;
+  height: 100%;
+  min-height: 620px;
+  object-fit: cover;
+}
+
+.vessel-summary {
+  margin: 42px 0 0;
+  padding-top: 22px;
+  border-top: 1px solid #cfdae4;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.vessel-summary dt {
+  color: #70859b;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.vessel-summary dd {
+  margin: 8px 0 0;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+@media (max-width: 1180px) {
+  .header-inner {
+    grid-template-columns: 1fr auto;
+  }
+
+  .main-nav {
+    display: none;
+  }
+
+  .fleet-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: 420px;
+    gap: 16px;
+  }
+
+  .intro-card {
+    grid-column: span 1;
+  }
+
+  .showcase-vessel-card--standard {
+    grid-column: span 1;
+  }
+
+  .showcase-vessel-card--wide {
+    grid-column: span 2;
+  }
+
+  .showcase-vessel-card--tall {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+
+  .showcase-card-model,
+  .showcase-vessel-card--wide .showcase-card-model,
+  .showcase-vessel-card--tall .showcase-card-model {
+    font-size: clamp(40px, 5vw, 60px);
+  }
+
+  .vessel-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .vessel-hero-image {
+    min-height: 480px;
+    order: -1;
+  }
+}
+
+@media (max-width: 680px) {
+  :root {
+    --header-height: 68px;
+    --showcase-radius: 23px;
+  }
+
+  .header-inner,
+  .page-shell,
+  .vessel-page {
+    width: min(100% - 24px, 1495px);
+  }
+
+  .brand-mark {
+    width: 38px;
+    height: 38px;
+  }
+
+  .material-badge {
+    min-height: 34px;
+    padding: 0 10px;
+    font-size: 7px;
+  }
+
+  .material-badge .material-dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .fleet-grid {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 440px;
+    gap: 16px;
+  }
+
+  .intro-card,
+  .showcase-vessel-card--standard,
+  .showcase-vessel-card--wide,
+  .showcase-vessel-card--tall {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .intro-card {
+    padding: 28px;
+  }
+
+  .intro-card h1 {
+    font-size: 50px;
+  }
+
+  .showcase-vessel-card--bottom-left .showcase-card-copy,
+  .showcase-vessel-card--top-left .showcase-card-copy,
+  .showcase-vessel-card--top-right .showcase-card-copy {
+    left: 21px;
+    right: auto;
+    top: auto;
+    bottom: 31px;
+    text-align: left;
+  }
+
+  .showcase-card-name {
+    font-size: 15px;
+  }
+
+  .showcase-card-model,
+  .showcase-vessel-card--wide .showcase-card-model,
+  .showcase-vessel-card--tall .showcase-card-model {
+    font-size: clamp(39px, 11vw, 52px);
+  }
+
+  .showcase-card-meta {
+    margin-top: 17px;
+    gap: 9px;
+    font-size: 11px;
+  }
+
+  .showcase-card-meta svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .showcase-card-divider {
+    height: 20px;
+  }
+
+  .showcase-card-surface {
+    position: relative;
+    isolation: isolate;
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: hidden;
+    border-radius: var(--showcase-radius);
+    background: #092a48;
+    box-shadow: 0 10px 30px rgba(7, 25, 42, .06);
+
+    -webkit-mask-image: radial-gradient(circle 39px at calc(100% - 30px) calc(100% - 7px),
+        transparent 0 38px,
+        #000 39px);
+
+    mask-image: radial-gradient(circle 39px at calc(100% - 30px) calc(100% - 7px),
+        transparent 0 38px,
+        #000 39px);
+
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-size: 100% 100%;
+    mask-size: 100% 100%;
+  }
+
+  .showcase-card-visit {
+    position: absolute;
+    z-index: 5;
+
+    right: -4px;
+    bottom: -40px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+
+    color: #142536;
+  }
+
+  .showcase-card-visit-circle {
+    width: 62px;
+    height: 62px;
+    font-size: 28px;
+  }
+
+  .vessel-hero {
+    min-height: auto;
+  }
+
+  .vessel-hero-image {
+    min-height: 320px;
+  }
+
+  .vessel-summary {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* V4.7 — smaller Visit Site circle */
+
+.showcase-card-visit-circle {
+  width: 62px;
+  height: 62px;
+  font-size: 28px;
+}
+
+.showcase-card-visit {
+  right: -1px;
+  bottom: -34px;
+}
+
+
+/* =========================================================
+   INTRO CARD — DARK EDITORIAL TEST
+   ========================================================= */
+
+.intro-card {
+  border: 1px solid rgba(255, 255, 255, .06);
+  background:
+    radial-gradient(circle at 80% 15%,
+      rgba(37, 85, 125, .26) 0%,
+      transparent 42%),
+    linear-gradient(145deg,
+      #082b4a 0%,
+      #061f38 100%);
+  padding: 38px;
+  color: #ffffff;
+}
+
+.intro-eyebrow {
+  margin-bottom: 22px;
+  color: rgba(255, 255, 255, .60);
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: .18em;
+}
+
+.intro-card h1 {
+  margin: 0;
+  max-width: 100%;
+  color: #ffffff;
+
+  font-size: clamp(66px, 4.7vw, 84px);
+  font-weight: 750;
+  line-height: .83;
+  letter-spacing: -.075em;
+}
+
+.intro-card p {
+  max-width: 355px;
+  margin: 32px 0 0;
+
+  color: rgba(255, 255, 255, .76);
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+/* Remove old pill completely */
+
+.intro-card-footer {
+  display: none !important;
+}
+
+
+/* Tablet */
+
+@media (max-width: 1180px) and (min-width: 681px) {
+
+  .intro-card {
+    padding: 32px;
+  }
+
+  .intro-card h1 {
+    font-size: clamp(58px, 7vw, 74px);
+  }
+}
+
+
+/* Mobile */
+
+@media (max-width: 680px) {
+
+  .intro-card {
+    padding: 28px;
+  }
+
+  .intro-card h1 {
+    font-size: 56px;
+  }
+
+  .intro-card p {
+    margin-top: 25px;
+    font-size: 14px;
+  }
+}
+
+
+/* =========================================================
+   CTA — SUNSET OIA ROTATING ARC
+   ========================================================= */
+
+.showcase-card-visit {
+  gap: 0;
+}
+
+.showcase-card-visit-circle {
+  position: relative;
+
+  width: 64px;
+  height: 64px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+
+  /* Same family as Fleet Showcase card */
+  background:
+    linear-gradient(145deg,
+      #082b4a 0%,
+      #061f38 100%);
+
+  color: #ffffff;
+
+  box-shadow:
+    0 5px 16px rgba(6, 31, 56, .18);
+
+  overflow: hidden;
+}
+
+
+/* Rotating curved text */
+
+.showcase-card-visit-ring {
+  position: absolute;
+  inset: 3px;
+
+  width: calc(100% - 6px);
+  height: calc(100% - 6px);
+
+  overflow: visible;
+
+  transform-origin: 50% 50%;
+
+  transition:
+    transform 800ms cubic-bezier(.2, .7, .2, 1);
+}
+
+.showcase-card-visit-ring text {
+  fill: rgba(255, 255, 255, .82);
+
+  font-family: "Instrument Sans", Arial, sans-serif;
+  font-size: 7px;
+  font-weight: 650;
+
+  letter-spacing: 1.15px;
+  text-transform: uppercase;
+}
+
+
+/* Centre arrow */
+
+.showcase-card-visit-arrow {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  place-items: center;
+
+  color: #d9ad6b;
+
+  font-family: Arial, sans-serif;
+  font-size: 22px;
+  font-weight: 300;
+
+  transition:
+    transform 280ms ease;
+}
+
+
+/* Hover */
+
+.showcase-card-visit:hover .showcase-card-visit-ring {
+  transform: rotate(125deg);
+}
+
+.showcase-card-visit:hover .showcase-card-visit-arrow {
+  transform: translate(2px, -2px);
+}
+
+
+/* Old external label gone */
+
+.showcase-card-visit-label {
+  display: none !important;
+}
+
+
+/* =========================================================
+   CTA — PERFECT CUTOUT ALIGNMENT
+   One geometry for cutout + button
+   ========================================================= */
+
+.showcase-vessel-card {
+  --cta-size: 82px;
+  --cta-half: 41px;
+
+  /* white cutout λίγο μεγαλύτερο από το navy button */
+  --cta-cutout-radius: 46px;
+
+  /* κοινό κέντρο button + cutout */
+  --cta-center-right: 28px;
+  --cta-center-bottom: 8px;
+}
+
+
+/* White cutout */
+
+.showcase-card-surface {
+  -webkit-mask-image:
+    radial-gradient(circle var(--cta-cutout-radius) at calc(100% - var(--cta-center-right)) calc(100% - var(--cta-center-bottom)),
+      transparent 0 calc(var(--cta-cutout-radius) - 1px),
+      #000 var(--cta-cutout-radius));
+
+  mask-image:
+    radial-gradient(circle var(--cta-cutout-radius) at calc(100% - var(--cta-center-right)) calc(100% - var(--cta-center-bottom)),
+      transparent 0 calc(var(--cta-cutout-radius) - 1px),
+      #000 var(--cta-cutout-radius));
+
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+
+/* Navy CTA — EXACT same centre */
+
+.showcase-card-visit {
+  right:
+    calc(var(--cta-center-right) - var(--cta-half));
+
+  bottom:
+    calc(var(--cta-center-bottom) - var(--cta-half));
+
+  gap: 0;
+}
+
+
+.showcase-card-visit-circle {
+  width: var(--cta-size);
+  height: var(--cta-size);
+}
+
+
+/* Keep CTA navy on hover */
+
+.showcase-card-visit:hover .showcase-card-visit-circle {
+  background:
+    linear-gradient(145deg,
+      #082b4a 0%,
+      #061f38 100%);
+}
+
+
+/* CTA SIZE UP */
+
+.showcase-card-visit-circle {
+  width: 82px;
+  height: 82px;
+}
+
+.showcase-card-visit-ring {
+  inset: 4px;
+  width: calc(100% - 8px);
+  height: calc(100% - 8px);
+}
+
+.showcase-card-visit-ring text {
+  font-size: 8.5px;
+  letter-spacing: 1.2px;
+}
+
+.showcase-card-visit-arrow {
+  font-size: 26px;
+}
+
+
+/* =========================================================
+   MINIMAL EXPLORE VESSEL CTA
+   ========================================================= */
+
+/* No more circular cutout */
+.showcase-card-surface {
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+}
+
+/* No old CTA elements */
+.showcase-card-notch,
+.showcase-card-visit,
+.showcase-card-visit-circle,
+.showcase-card-visit-ring,
+.showcase-card-visit-label {
+  display: none !important;
+}
+
+/* Card no longer needs room underneath */
+.showcase-vessel-card {
+  padding-bottom: 0 !important;
+}
+
+/* Bring bento rows back together */
+@media (min-width: 1181px) {
+  .fleet-grid {
+    row-gap: 18px !important;
+  }
+}
+
+/* New minimal CTA */
+.showcase-card-explore {
+  position: absolute;
+  z-index: 4;
+
+  right: 26px;
+  bottom: 25px;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+
+  color: #ffffff;
+
+  font-family: "Instrument Sans", Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 650;
+  line-height: 1;
+
+  letter-spacing: .12em;
+  text-transform: uppercase;
+
+  transform-origin: right center;
+
+  transition:
+    transform 220ms cubic-bezier(.2, .7, .2, 1),
+    opacity 220ms ease;
+}
+
+/* Arrow */
+.showcase-card-explore-arrow {
+  font-family: Arial, sans-serif;
+  font-size: 19px;
+  font-weight: 300;
+  line-height: 1;
+
+  transition: transform 220ms ease;
+}
+
+/* Only CTA moves/grows */
+.showcase-card-surface:hover .showcase-card-explore {
+  transform: scale(1.08);
+}
+
+.showcase-card-surface:hover .showcase-card-explore-arrow {
+  transform: translate(2px, -2px);
+}
+
+/* Mobile */
+@media (max-width: 680px) {
+  .showcase-card-explore {
+    right: 20px;
+    bottom: 20px;
+    font-size: 9px;
+  }
+
+  .showcase-card-explore-arrow {
+    font-size: 17px;
+  }
+}
+
+
+/* =========================================================
+   QUIET HOVER — keep the vessel card elegant
+   ========================================================= */
+
+.showcase-card-surface:hover .showcase-card-media {
+  transform: scale(1.001) !important;
+}
+
+.showcase-card-explore {
+  opacity: .82;
+  transform: none !important;
+  transition: opacity 180ms ease;
+}
+
+.showcase-card-surface:hover .showcase-card-explore {
+  opacity: 1;
+  transform: none !important;
+}
+
+.showcase-card-explore-arrow,
+.showcase-card-surface:hover .showcase-card-explore-arrow {
+  transform: none !important;
+}
+
+
+/* =========================================================
+   INDEPENDENT VESSEL TITLE / META POSITIONING
+   ========================================================= */
+
+.showcase-card-title {
+  position: absolute;
+  z-index: 3;
+}
+
+.showcase-card-title--top-left {
+  top: 28px;
+  left: 28px;
+}
+
+.showcase-card-title--bottom-left {
+  left: 28px;
+  bottom: 72px;
+}
+
+.showcase-card-title--top-right {
+  top: 28px;
+  right: 28px;
+  text-align: right;
+}
+
+.showcase-card-meta {
+  position: absolute;
+  z-index: 3;
+}
+
+.showcase-card-meta--bottom-left {
+  left: 28px;
+  bottom: 25px;
+}
+
+.showcase-card-meta--top-left {
+  top: 125px;
+  left: 28px;
+}
+
+.showcase-card-meta--top-right {
+  top: 125px;
+  right: 28px;
+}
+
+/* MILOS — tighter title composition */
+.showcase-vessel-card:has(a[href="/fleet/milos"]) .showcase-card-title {
+  top: 28px;
+  left: 28px;
+}
+
+.showcase-vessel-card:has(a[href="/fleet/milos"]) .showcase-card-name {
+  margin-bottom: 3px;
+}
+
+
+/* Restore vessel card text color after title/meta split */
+.showcase-card-title,
+.showcase-card-meta {
+  color: #ffffff;
+}
+
+.showcase-card-name,
+.showcase-card-model,
+.showcase-card-meta span {
+  color: inherit;
+}
+
+
+.showcase-card-model-line {
+  display: block;
+}
+
+
+/* MILOS — tighten IPANEMA / 58 spacing */
+.showcase-vessel-card:has(a[href="/fleet/milos"]) .showcase-card-model-line+.showcase-card-model-line {
+  margin-top: -4px;
+}
+
+.showcase-card-media {
+  transform: scale(var(--image-scale, 1));
+  transform-origin: center center;
+}
+
+.showcase-card-surface:hover .showcase-card-media {
+  transform: scale(var(--image-scale, 1)) !important;
+}
+/* =========================================================
+   VESSEL CARD SHADE LEVELS
+   ========================================================= */
+
+.showcase-vessel-card--shade-light .showcase-card-surface::before,
+.showcase-vessel-card--shade-light .showcase-card-surface::after {
+  opacity: .38;
+}
+
+.showcase-vessel-card--shade-none .showcase-card-surface::before,
+.showcase-vessel-card--shade-none .showcase-card-surface::after {
+  opacity: 0;
+}
+
