@@ -1,0 +1,307 @@
+/* =========================================================
+   SHOWCASE HEADER — NAV REDESIGN V1
+   Imported after styles.css so it intentionally overrides
+   the original header rules while the fleet cards stay intact.
+   ========================================================= */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  min-height: 98px;
+  border-top: 0;
+  border-bottom: 1px solid rgba(8, 44, 88, .10);
+  background: rgba(255, 255, 255, .96);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.header-inner {
+  width: min(1495px, calc(100% - 40px));
+  min-height: 98px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.showcase-brand {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  min-width: 108px;
+}
+
+.showcase-brand-logo {
+  width: 106px;
+  height: auto;
+  display: block;
+}
+
+.showcase-nav {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: clamp(18px, 1.7vw, 32px);
+}
+
+.showcase-nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #183b5b;
+  font-size: 12px;
+  font-weight: 550;
+  line-height: 1;
+  letter-spacing: -.01em;
+  white-space: nowrap;
+  transition: color 160ms ease, opacity 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.showcase-nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 4px;
+  height: 1px;
+  background: #0a3558;
+  transition: right 180ms ease;
+}
+
+.showcase-nav-link:hover,
+.showcase-nav-link.is-active {
+  color: #082c58;
+}
+
+.showcase-nav-link:hover::after,
+.showcase-nav-link.is-active::after {
+  right: 0;
+}
+
+.showcase-nav-link--featured {
+  min-height: 42px;
+  padding: 0 15px;
+  border: 1px solid rgba(194, 154, 78, .46);
+  border-radius: 999px;
+  background: rgba(194, 154, 78, .07);
+  color: #735b27;
+}
+
+.showcase-nav-link--featured::after {
+  display: none;
+}
+
+.showcase-nav-link--featured:hover,
+.showcase-nav-link--featured.is-active {
+  border-color: rgba(194, 154, 78, .72);
+  background: rgba(194, 154, 78, .12);
+  color: #5f4a1d;
+}
+
+.showcase-menu-button {
+  display: none;
+  width: 46px;
+  height: 46px;
+  margin-left: auto;
+  padding: 0;
+  border: 1px solid rgba(8, 44, 88, .12);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.showcase-menu-button span {
+  width: 18px;
+  height: 1px;
+  display: block;
+  margin: 5px auto;
+  background: #082c58;
+  transition: transform 180ms ease;
+}
+
+.showcase-mobile-nav {
+  display: none;
+}
+
+.section-placeholder {
+  width: min(1495px, calc(100% - 40px));
+  min-height: calc(100vh - 98px);
+  margin: 0 auto;
+  display: grid;
+  align-items: center;
+  padding: 72px 0;
+}
+
+.section-placeholder-copy {
+  max-width: 880px;
+}
+
+.section-placeholder-eyebrow {
+  display: block;
+  margin-bottom: 18px;
+  color: #8c7240;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.section-placeholder h1 {
+  margin: 0;
+  color: #082c58;
+  font-size: clamp(64px, 8vw, 126px);
+  font-weight: 700;
+  line-height: .88;
+  letter-spacing: -.075em;
+}
+
+.section-placeholder p {
+  max-width: 650px;
+  margin: 32px 0 0;
+  color: #4c6071;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.section-placeholder-note {
+  display: inline-flex;
+  margin-top: 34px;
+  padding: 9px 12px;
+  border: 1px solid rgba(8, 44, 88, .12);
+  border-radius: 999px;
+  color: #547087;
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1240px) {
+  .site-header {
+    min-height: 84px;
+  }
+
+  .header-inner {
+    min-height: 84px;
+  }
+
+  .showcase-brand-logo {
+    width: 92px;
+  }
+
+  .showcase-nav {
+    display: none;
+  }
+
+  .showcase-menu-button {
+    display: block;
+  }
+
+  .showcase-mobile-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    border-bottom: 1px solid transparent;
+    background: rgba(255, 255, 255, .985);
+    opacity: 0;
+    transition: grid-template-rows 240ms ease, opacity 180ms ease, border-color 180ms ease;
+  }
+
+  .showcase-mobile-nav.is-open {
+    grid-template-rows: 1fr;
+    border-bottom-color: rgba(8, 44, 88, .10);
+    opacity: 1;
+  }
+
+  .showcase-mobile-nav-inner {
+    width: min(1495px, calc(100% - 40px));
+    min-height: 0;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .showcase-mobile-nav.is-open .showcase-mobile-nav-inner {
+    padding: 8px 0 22px;
+  }
+
+  .showcase-mobile-link {
+    min-height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(8, 44, 88, .08);
+    color: #163957;
+    font-size: 15px;
+    font-weight: 550;
+  }
+
+  .showcase-mobile-link span:last-child {
+    color: #a6813d;
+    font-family: Arial, sans-serif;
+    font-size: 17px;
+    font-weight: 300;
+  }
+
+  .showcase-mobile-link.is-active {
+    color: #082c58;
+    font-weight: 700;
+  }
+
+  .showcase-mobile-link--featured {
+    color: #7b622d;
+  }
+
+  .section-placeholder {
+    min-height: calc(100vh - 84px);
+  }
+}
+
+@media (max-width: 680px) {
+  .site-header {
+    min-height: 76px;
+  }
+
+  .header-inner,
+  .showcase-mobile-nav-inner,
+  .section-placeholder {
+    width: min(100% - 24px, 1495px);
+  }
+
+  .header-inner {
+    min-height: 76px;
+  }
+
+  .showcase-brand {
+    min-width: 0;
+  }
+
+  .showcase-brand-logo {
+    width: 80px;
+  }
+
+  .showcase-menu-button {
+    width: 42px;
+    height: 42px;
+  }
+
+  .section-placeholder {
+    min-height: calc(100vh - 76px);
+    padding: 48px 0;
+  }
+
+  .section-placeholder h1 {
+    font-size: clamp(54px, 17vw, 78px);
+  }
+
+  .section-placeholder p {
+    margin-top: 24px;
+    font-size: 15px;
+  }
+}
