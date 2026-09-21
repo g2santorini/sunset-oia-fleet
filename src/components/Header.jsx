@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 const navigation = [
   { label: "Our Fleet", to: "/" },
   { label: "Cruises", to: "/cruises" },
-  { label: "Rates & Availability", to: "/rates-availability", featured: true },
+  { label: "Rates & Availability", to: "/rates-availability" },
   { label: "Thirasia Experiences", to: "/thirasia" },
   { label: "Nearby Islands", to: "/nearby-islands" },
 ];
@@ -35,11 +35,7 @@ export default function Header() {
               to={item.to}
               end={item.to === "/"}
               className={({ isActive }) =>
-                [
-                  "showcase-nav-link",
-                  item.featured ? "showcase-nav-link--featured" : "",
-                  isActive ? "is-active" : "",
-                ]
+                ["showcase-nav-link", isActive ? "is-active" : ""]
                   .filter(Boolean)
                   .join(" ")
               }
@@ -74,11 +70,7 @@ export default function Header() {
               to={item.to}
               end={item.to === "/"}
               className={({ isActive }) =>
-                [
-                  "showcase-mobile-link",
-                  item.featured ? "showcase-mobile-link--featured" : "",
-                  isActive ? "is-active" : "",
-                ]
+                ["showcase-mobile-link", isActive ? "is-active" : ""]
                   .filter(Boolean)
                   .join(" ")
               }
