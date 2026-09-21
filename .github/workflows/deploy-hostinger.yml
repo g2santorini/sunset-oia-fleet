@@ -1,0 +1,75 @@
+name: Publish Showcase to Hostinger
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: hostinger-showcase-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check hosting configuration
+        env:
+          FTP_SERVER: ${{ secrets.HOSTINGER_FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+          FTP_DIR: ${{ secrets.HOSTINGER_FTP_DIR }}
+        run: |
+          for key in FTP_SERVER FTP_USERNAME FTP_PASSWORD FTP_DIR; do
+            if [ -z "${!key}" ]; then
+              echo "::error::Missing hosting configuration: $key. Add the corresponding HOSTINGER secret."
+              exit 1
+            fi
+          done
+          if [[ "$FTP_DIR" != */ ]]; then
+            echo "::error::HOSTINGER_FTP_DIR must end with a slash."
+            exit 1
+          fi
+
+      - name: Check out code
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+
+      - name: Build website
+        run: |
+          npm run build
+          test -s dist/index.html
+          test -s dist/.htaccess
+
+      - name: Publish built files over FTPS
+        uses: SamKirkland/FTP-Deploy-Action@8e83cea8672e3fbcbb9fdafff34debf6ae4c5f65 # v4.3.5
+        with:
+          server: ${{ secrets.HOSTINGER_FTP_SERVER }}
+          username: ${{ secrets.HOSTINGER_FTP_USERNAME }}
+          password: ${{ secrets.HOSTINGER_FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          security: strict
+          local-dir: ./dist/
+          server-dir: ${{ secrets.HOSTINGER_FTP_DIR }}
+          dangerous-clean-slate: false
+          timeout: 120000
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            images/vessels/alexandros-ferretti731.mov
+
